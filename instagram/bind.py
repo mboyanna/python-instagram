@@ -112,6 +112,8 @@ def bind_method(**config):
                 return pagination.get('next_url')
             if self.pagination_format == 'dict':
                 return pagination
+            if self.pagination_format == 'next_min_tag_id':
+                return pagination.get('min_tag_id')
             raise Exception('Invalid value for pagination_format: %s' % self.pagination_format)
           
         def _do_api_request(self, url, method="GET", body=None, headers=None):

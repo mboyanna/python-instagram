@@ -157,6 +157,13 @@ class InstagramAPI(oauth2.OAuth2API):
                 root_class=Media,
                 paginates=True)
 
+    tag_recent_media_crawl_tag = bind_method(
+                path="/tags/{tag_name}/media/recent",
+                accepts_parameters=['count', 'max_tag_id', 'tag_name', 'next_min_tag_id', 'pagination_format'],
+                root_class=Media,
+                response_type="list",
+                paginates=True)
+
     tag_recent_media = bind_method(
                 path="/tags/{tag_name}/media/recent",
                 accepts_parameters=['count', 'max_tag_id', 'tag_name'],
