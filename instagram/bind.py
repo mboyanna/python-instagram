@@ -177,10 +177,7 @@ def bind_method(**config):
             return content, next
 
         def execute(self):
-            url, method, body, headers = OAuth2Request(self.api).prepare_request(self.method,
-                                                                                 self.path,
-                                                                                 self.parameters,
-                                                                                 include_secret=self.include_secret)
+            url, method, body, headers = OAuth2Request(self.api).prepare_request(self.method,self.path,self.parameters,include_secret=self.include_secret)
             if self.with_next_url:
                 return self._get_with_next_url(self.with_next_url, method, body, headers)
             if self.as_generator:
