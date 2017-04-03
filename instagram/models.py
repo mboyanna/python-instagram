@@ -108,9 +108,12 @@ class Media(ApiModel):
             new_media.location = Location.object_from_dictionary(entry['location'])
 
         new_media.caption = None
+        new_media.post_text = None
         if entry['caption']:
             new_media.caption = Comment.object_from_dictionary(entry['caption'])
+            new_media.post_text = entry['caption']['text'] 
         
+
         new_media.tags = []
         if entry['tags']:
             for tag in entry['tags']:
