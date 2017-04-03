@@ -86,8 +86,7 @@ def bind_method(**config):
                 if key in self.parameters:
                     raise InstagramClientError("Parameter %s already supplied" % key)
                 self.parameters[key] = encode_string(value)
-            #DBG
-            print(self.parameters)
+
             if 'user_id' in self.accepts_parameters and not 'user_id' in self.parameters \
                and not self.requires_target_user:
                 self.parameters['user_id'] = 'self'
@@ -129,9 +128,7 @@ def bind_method(**config):
             response, content = OAuth2Request(self.api).make_request(url, method=method, body=body, headers=headers)
             if response['status'] == '503' or response['status'] == '429':
                 raise InstagramAPIError(response['status'], "Rate limited", "Your client is making too many request per second")
-            # DBG
-            # print("URL was =", url)
-            print("")
+
             try:
                 content_obj = simplejson.loads(content)
             except ValueError:
